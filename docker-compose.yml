@@ -1,0 +1,28 @@
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: automaster-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root12345
+      MYSQL_DATABASE: automaster
+    ports:
+      - "3307:3306"
+    volumes:
+      - automaster_db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: automaster-phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - "8081:80"
+
+volumes:
+  automaster_db_data:
