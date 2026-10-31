@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Role extends Model
 {
-    protected $fillable = ['name', 'display_name', 'description'];
+    protected $fillable = ['name', 'display_name', 'description','is_system'];
+
+    protected function casts(): array
+    {
+        return ['is_system' => 'boolean'];
+    }
 
     public function users(): HasMany
     {

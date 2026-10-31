@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
+use LogicException;
 class AuditLog extends Model
 {
     public $timestamps = false;
@@ -21,6 +21,17 @@ class AuditLog extends Model
             'created_at' => 'datetime',
         ];
     }
+      protected static function booted(): void
+    {
+        // تۆمار ناگۆڕدرێت و ناسڕدرێتەوە
+        static::updating(function () {
+            throw new LogicException('تۆماری گۆڕانکاری ناگۆڕدرێت.');
+        });
+        static::deleting(function () {
+            throw new LogicException('تۆماری گۆڕانکاری ناسڕدرێتەوە.');
+        });
+    }
+
 
     public function user(): BelongsTo
     {
