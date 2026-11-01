@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EnsureUserIsActive;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -12,10 +13,20 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->web(append: [EnsureUserIsActive::class]);
+        $middleware->redirectGuestsTo('/login');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
+
+        // هەڵەی یاسای کار (مەسەلەن: ناتوانیت خۆت ڕۆڵت بگۆڕیت) وەک نامە پیشان بدرێت
+        $exceptions->render(function (\DomainException $e, Request $request) {
+            if ($request->expectsJson()) {
+                return null;
+            }
+
+            return back()->withInput()->withErrors(['error' => $e->getMessage()]);
+        });
     })->create();
