@@ -4,12 +4,15 @@ namespace App\Livewire\Roles;
 
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\User;
 use App\Services\AccessService;
 use DomainException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+
 
 #[Layout('components.layouts.app')]
 #[Title('فۆڕمی ڕۆڵ')]
@@ -53,8 +56,11 @@ class Form extends Component
         try {
             $role = $this->roleId ? Role::findOrFail($this->roleId) : null;
 
+            /** @var User $actor */
+            $actor = Auth::user();
+
             $access->saveRole(
-                auth()->user(),
+                $actor,
                 $role,
                 [
                     'name' => $data['name'],

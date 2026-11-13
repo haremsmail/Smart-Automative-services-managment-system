@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Users;
 
+
 use App\Models\Role;
 use App\Models\User;
 use App\Services\AccessService;
@@ -11,6 +12,7 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 #[Layout('components.layouts.app')]
 #[Title('کارمەندان')]
@@ -57,7 +59,8 @@ class Index extends Component
         $newStatus = $target->isActive() ? 'inactive' : 'active';
 
         try {
-            $access->setStatus(auth()->user(), $target, $newStatus);
+
+            $access->setStatus(Auth::user(), $target, $newStatus);
             $this->dispatch('flash', message: $newStatus === 'active' ? 'هەژمار چالاککرا.' : 'هەژمار ناچالاککرا.', type: 'ok');
         } catch (DomainException $e) {
             $this->dispatch('flash', message: $e->getMessage(), type: 'error');

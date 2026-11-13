@@ -45,7 +45,10 @@ class Login extends Component
             return;
         }
 
-        if (! Auth::user()->isActive()) {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        if (! $user->isActive()) {
             Auth::logout();
             $this->addError('email', 'ئەم هەژمارە ناچالاکە. تکایە بەڕێوەبەر پەیوەندی پێوە بکە.');
 
@@ -54,7 +57,7 @@ class Login extends Component
 
         RateLimiter::clear($key);
         session()->regenerate();
-        $audit->record(Auth::user(), 'login.success');
+        $audit->record($user, 'login.success');
 
         $this->redirect(session()->pull('url.intended', route('users.index')));
     }
