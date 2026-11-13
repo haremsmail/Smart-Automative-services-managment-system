@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
         // داتای نموونەی کڕیار و ئۆتۆمبێل، تەنها بۆ گەشەپێدان (هەرگیز لە production نا)
         if (app()->isLocal()) {
             $this->call(DemoCustomerSeeder::class);
+            $this->call(DemoSchedulingSeeder::class);
         }
     }
 }

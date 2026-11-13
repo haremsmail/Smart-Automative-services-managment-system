@@ -35,6 +35,15 @@ return [
             'vehicles.transfer' => 'گواستنەوەی خاوەندارێتی ئۆتۆمبێل',
             'vehicles.delete' => 'ئەرشیفکردنی ئۆتۆمبێل',
         ],
+        'appointments' => [
+            'appointments.view' => 'بینینی نۆرە و تابلۆی وۆرکشۆپ',
+            'appointments.manage' => 'دانان، گۆڕین و سپاردنی نۆرە',
+        ],
+        'scheduling' => [
+            'services.manage' => 'بەڕێوەبردنی خزمەتگوزاری و نرخ',
+            'bays.manage' => 'بەڕێوەبردنی شوێنەکانی کار',
+            'technicians.manage' => 'شارەزایی، شەفت و مۆڵەتی وەستاکان',
+        ],
         'payments' => [
             'payments.create' => 'زیادکردنی پارەدان',
         ],

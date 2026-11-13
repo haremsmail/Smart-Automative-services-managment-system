@@ -78,6 +78,17 @@ class Index extends Component
             'vehicle.transferred' => ['label' => 'گواستنەوەی خاوەندارێتی', 'color' => 'purple', 'bg' => 'bg-purple-50 text-purple-700 border-purple-200'],
             'vehicle.archived' => ['label' => 'ئەرشیفکردنی ئۆتۆمبێل', 'color' => 'rose', 'bg' => 'bg-rose-50 text-rose-700 border-rose-200'],
             'vehicle.restored' => ['label' => 'گەڕاندنەوەی ئۆتۆمبێل', 'color' => 'teal', 'bg' => 'bg-teal-50 text-teal-700 border-teal-200'],
+            'appointment.created' => ['label' => 'دانانی نۆرە', 'color' => 'emerald', 'bg' => 'bg-emerald-50 text-emerald-700 border-emerald-200'],
+            'appointment.rescheduled' => ['label' => 'گۆڕینی کاتی نۆرە', 'color' => 'blue', 'bg' => 'bg-blue-50 text-blue-700 border-blue-200'],
+            'appointment.assigned' => ['label' => 'سپاردنی وەستا', 'color' => 'indigo', 'bg' => 'bg-indigo-50 text-indigo-700 border-indigo-200'],
+            'appointment.status' => ['label' => 'گۆڕینی دۆخی نۆرە', 'color' => 'amber', 'bg' => 'bg-amber-50 text-amber-700 border-amber-200'],
+            'schedule.updated' => ['label' => 'گۆڕینی خشتەی شەفت', 'color' => 'purple', 'bg' => 'bg-purple-50 text-purple-700 border-purple-200'],
+            'skill.updated' => ['label' => 'گۆڕینی شارەزایی', 'color' => 'purple', 'bg' => 'bg-purple-50 text-purple-700 border-purple-200'],
+            'timeoff.created' => ['label' => 'مۆڵەتی وەستا', 'color' => 'amber', 'bg' => 'bg-amber-50 text-amber-700 border-amber-200'],
+            'service.created' => ['label' => 'زیادکردنی خزمەتگوزاری', 'color' => 'emerald', 'bg' => 'bg-emerald-50 text-emerald-700 border-emerald-200'],
+            'service.updated' => ['label' => 'دەستکاریی خزمەتگوزاری', 'color' => 'blue', 'bg' => 'bg-blue-50 text-blue-700 border-blue-200'],
+            'bay.created' => ['label' => 'زیادکردنی شوێنی کار', 'color' => 'emerald', 'bg' => 'bg-emerald-50 text-emerald-700 border-emerald-200'],
+            'bay.status' => ['label' => 'دۆخی شوێنی کار', 'color' => 'amber', 'bg' => 'bg-amber-50 text-amber-700 border-amber-200'],
             default => ['label' => $action, 'color' => 'slate', 'bg' => 'bg-slate-50 text-slate-700 border-slate-200'],
         };
     }
@@ -91,6 +102,10 @@ class Index extends Component
             'Permission' => 'دەسەڵات',
             'Customer' => 'کڕیار',
             'Vehicle' => 'ئۆتۆمبێل',
+            'Appointment' => 'نۆرە',
+            'ServiceCatalog' => 'خزمەتگوزاری',
+            'ServiceBay' => 'شوێنی کار',
+            'Shift' => 'شەفت',
             default => $model ?? '—',
         };
     }

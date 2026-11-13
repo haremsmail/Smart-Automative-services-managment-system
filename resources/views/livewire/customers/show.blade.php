@@ -163,6 +163,29 @@
         </div>
     </div>
 
+    {{-- Appointments --}}
+    <div class="{{ $card }}">
+        <div class="mb-3 flex items-center justify-between">
+            <h2 class="text-sm font-bold text-slate-900 dark:text-white">
+                📅 نۆرە چالاکەکان
+                @if ($noShows >= 2) <span class="mr-2 rounded-lg bg-rose-100 px-2 py-0.5 text-[11px] text-rose-700 dark:bg-rose-900/50 dark:text-rose-300">⚠️ {{ $noShows }} جار نەهاتووە</span> @endif
+            </h2>
+            @if (! $customer->trashed())
+                @can('appointments.manage')
+                    <a href="{{ route('appointments.create', ['customer' => $customer->id]) }}" class="rounded-xl bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700">+ نۆرە</a>
+                @endcan
+            @endif
+        </div>
+        @forelse ($upcoming as $ap)
+            <a href="{{ route('appointments.show', $ap) }}" class="mb-2 flex items-center justify-between rounded-xl border border-slate-200 px-4 py-2.5 text-xs hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800">
+                <span><b class="font-mono">{{ $ap->reference }}</b> · {{ $ap->scheduled_at->format('Y-m-d H:i') }} · <span class="font-mono">{{ $ap->vehicle?->plate_number }}</span></span>
+                <span class="text-slate-500">{{ $ap->statusLabel() }}</span>
+            </a>
+        @empty
+            <p class="text-xs text-slate-400">هیچ نۆرەیەکی چالاک نییە.</p>
+        @endforelse
+    </div>
+
     {{-- Recent visits --}}
     <div class="{{ $card }}">
         <h2 class="mb-3 text-sm font-bold text-slate-900 dark:text-white">کۆتا سەردانەکان</h2>
