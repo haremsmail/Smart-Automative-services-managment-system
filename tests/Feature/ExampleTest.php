@@ -14,6 +14,7 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertRedirect(route('users.index'));
+        // میوان (بەبێ چوونەژوورەوە) دەنێردرێت بۆ چوونەژوورەوە
+        $response->assertRedirect(route('login'));
     }
 }

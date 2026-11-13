@@ -88,7 +88,7 @@
             {{-- Sidebar Top: Brand & Logo --}}
             <div>
                 <div class="flex h-16 items-center justify-between border-b border-slate-200 px-5 dark:border-slate-800">
-                    <a href="{{ route('users.index') }}" class="flex items-center gap-3">
+                    <a href="{{ route('home') }}" class="flex items-center gap-3">
                         <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-700 to-indigo-600 font-black text-white shadow-md shadow-blue-500/20">
                             AM
                         </div>

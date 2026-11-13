@@ -59,7 +59,7 @@ class Login extends Component
         session()->regenerate();
         $audit->record($user, 'login.success');
 
-        $this->redirect(session()->pull('url.intended', route('users.index')));
+        $this->redirect(session()->pull('url.intended', route('home')));
     }
 
     public function render()

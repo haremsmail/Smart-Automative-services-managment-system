@@ -27,7 +27,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\EnsureUserIsActive;
 
-Route::get('/', fn () => redirect()->route('users.index'));
+// پەڕەی سەرەکی: هەر کەسە دەچێتە یەکەم پەڕەیەک کە دەسەڵاتی هەیە (وەستا ← تابلۆ، کاشێر ← کڕیاران...)
+Route::get('/', function () {
+    $route = Auth::user()->homeRoute();
+
+    return $route ? redirect()->route($route) : response()->view('no-access');
+})->middleware('auth')->name('home');
 
 // نۆرەی ئۆنلاینی کڕیار (گشتی، بەبێ چوونەژوورەوە)
 Route::get('/book', BookingCreate::class)->name('booking.create');

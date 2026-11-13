@@ -95,6 +95,32 @@ class User extends Authenticatable
             ->whereHas('role', fn ($q) => $q->where('name', 'technician'));
     }
 
+    /**
+     * یەکەم پەڕە کە ئەم کارمەندە دەسەڵاتی هەیە، بۆ پاش چوونەژوورەوە.
+     * ڕیزبەندی بە پێی گرنگی کاری ڕۆژانەیە. null = هیچ دەسەڵاتێکی نییە.
+     */
+    public function homeRoute(): ?string
+    {
+        $pages = [
+            'appointments.view' => 'appointments.board',
+            'customers.view' => 'customers.index',
+            'vehicles.view' => 'vehicles.index',
+            'users.view' => 'users.index',
+            'technicians.manage' => 'technicians.index',
+            'roles.manage' => 'roles.index',
+            'branches.manage' => 'branches.index',
+            'audit.view' => 'audit.index',
+        ];
+
+        foreach ($pages as $permission => $route) {
+            if ($this->hasPermission($permission)) {
+                return $route;
+            }
+        }
+
+        return null;
+    }
+
     public function isActive(): bool
     {
         return $this->status === 'active';
