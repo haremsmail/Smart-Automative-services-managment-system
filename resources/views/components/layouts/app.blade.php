@@ -156,21 +156,42 @@
                         </nav>
                     </div>
 
+                    {{-- Module 2: Customers & Vehicles --}}
+                    @canany(['customers.view', 'vehicles.view'])
+                        <div>
+                            <div class="mb-2 px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                                M2 · کڕیار و ئۆتۆمبێل
+                            </div>
+                            <nav class="space-y-1">
+                                @can('customers.view')
+                                    <a href="{{ route('customers.index') }}"
+                                       class="flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium transition {{ request()->routeIs('customers.*') ? 'bg-blue-50 text-blue-700 shadow-sm dark:bg-blue-900/40 dark:text-blue-300 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800/80 dark:hover:text-white' }}">
+                                        <svg class="h-4 w-4 shrink-0 {{ request()->routeIs('customers.*') ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                        </svg>
+                                        <span>کڕیاران (Customers)</span>
+                                    </a>
+                                @endcan
+
+                                @can('vehicles.view')
+                                    <a href="{{ route('vehicles.index') }}"
+                                       class="flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium transition {{ request()->routeIs('vehicles.*') ? 'bg-blue-50 text-blue-700 shadow-sm dark:bg-blue-900/40 dark:text-blue-300 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800/80 dark:hover:text-white' }}">
+                                        <svg class="h-4 w-4 shrink-0 {{ request()->routeIs('vehicles.*') ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17a2 2 0 11-4 0 2 2 0 014 0zm12 0a2 2 0 11-4 0 2 2 0 014 0zM4 17H3v-5l2-5h11l3 5h2v5h-1M8 17h8M5 12h14"/>
+                                        </svg>
+                                        <span>ئۆتۆمبێلەکان (Vehicles)</span>
+                                    </a>
+                                @endcan
+                            </nav>
+                        </div>
+                    @endcanany
+
                     {{-- Upcoming Modules Section --}}
                     <div>
                         <div class="mb-2 px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                             مۆدیوولەکانی وۆرکشۆپ
                         </div>
                         <nav class="space-y-1">
-                            <div class="flex items-center justify-between rounded-xl px-3 py-2 text-slate-400 dark:text-slate-500 cursor-not-allowed">
-                                <span class="flex items-center gap-3">
-                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                                    </svg>
-                                    <span>M2 · کڕیار و ئۆتۆمبێل</span>
-                                </span>
-                                <span class="rounded bg-blue-100/70 px-1.5 py-0.5 text-[9px] font-bold text-blue-700 dark:bg-blue-950 dark:text-blue-400">دواتر</span>
-                            </div>
 
                             <div class="flex items-center justify-between rounded-xl px-3 py-2 text-slate-400 dark:text-slate-500 cursor-not-allowed">
                                 <span class="flex items-center gap-3">

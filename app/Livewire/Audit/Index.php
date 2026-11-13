@@ -69,6 +69,15 @@ class Index extends Component
             'branch.created' => ['label' => 'دروستکردنی لق', 'color' => 'emerald', 'bg' => 'bg-emerald-50 text-emerald-700 border-emerald-200'],
             'branch.updated' => ['label' => 'دەستکاریی لق', 'color' => 'blue', 'bg' => 'bg-blue-50 text-blue-700 border-blue-200'],
             'branch.status' => ['label' => 'گۆڕینی دۆخی لق', 'color' => 'amber', 'bg' => 'bg-amber-50 text-amber-700 border-amber-200'],
+            'customer.created' => ['label' => 'زیادکردنی کڕیار', 'color' => 'emerald', 'bg' => 'bg-emerald-50 text-emerald-700 border-emerald-200'],
+            'customer.updated' => ['label' => 'دەستکاریی کڕیار', 'color' => 'blue', 'bg' => 'bg-blue-50 text-blue-700 border-blue-200'],
+            'customer.archived' => ['label' => 'ئەرشیفکردنی کڕیار', 'color' => 'rose', 'bg' => 'bg-rose-50 text-rose-700 border-rose-200'],
+            'customer.restored' => ['label' => 'گەڕاندنەوەی کڕیار', 'color' => 'teal', 'bg' => 'bg-teal-50 text-teal-700 border-teal-200'],
+            'vehicle.created' => ['label' => 'زیادکردنی ئۆتۆمبێل', 'color' => 'emerald', 'bg' => 'bg-emerald-50 text-emerald-700 border-emerald-200'],
+            'vehicle.updated' => ['label' => 'دەستکاریی ئۆتۆمبێل', 'color' => 'blue', 'bg' => 'bg-blue-50 text-blue-700 border-blue-200'],
+            'vehicle.transferred' => ['label' => 'گواستنەوەی خاوەندارێتی', 'color' => 'purple', 'bg' => 'bg-purple-50 text-purple-700 border-purple-200'],
+            'vehicle.archived' => ['label' => 'ئەرشیفکردنی ئۆتۆمبێل', 'color' => 'rose', 'bg' => 'bg-rose-50 text-rose-700 border-rose-200'],
+            'vehicle.restored' => ['label' => 'گەڕاندنەوەی ئۆتۆمبێل', 'color' => 'teal', 'bg' => 'bg-teal-50 text-teal-700 border-teal-200'],
             default => ['label' => $action, 'color' => 'slate', 'bg' => 'bg-slate-50 text-slate-700 border-slate-200'],
         };
     }
@@ -80,6 +89,8 @@ class Index extends Component
             'Role' => 'ڕۆڵ',
             'Branch' => 'لق',
             'Permission' => 'دەسەڵات',
+            'Customer' => 'کڕیار',
+            'Vehicle' => 'ئۆتۆمبێل',
             default => $model ?? '—',
         };
     }

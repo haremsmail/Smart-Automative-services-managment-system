@@ -35,5 +35,10 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
             ]
         );
+
+        // داتای نموونەی کڕیار و ئۆتۆمبێل، تەنها بۆ گەشەپێدان (هەرگیز لە production نا)
+        if (app()->isLocal()) {
+            $this->call(DemoCustomerSeeder::class);
+        }
     }
 }

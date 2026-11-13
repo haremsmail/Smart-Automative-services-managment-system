@@ -3,6 +3,12 @@
 use App\Livewire\Audit\Index as AuditIndex;
 use App\Livewire\Auth\Login;
 use App\Livewire\Branches\Index as BranchesIndex;
+use App\Livewire\Customers\Form as CustomerForm;
+use App\Livewire\Customers\Index as CustomersIndex;
+use App\Livewire\Customers\Show as CustomerShow;
+use App\Livewire\Vehicles\Form as VehicleForm;
+use App\Livewire\Vehicles\Index as VehiclesIndex;
+use App\Livewire\Vehicles\Show as VehicleShow;
 use App\Livewire\Roles\Form as RoleForm;
 use App\Livewire\Roles\Index as RolesIndex;
 use App\Livewire\Users\Form as UserForm;
@@ -44,4 +50,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/branches', BranchesIndex::class)->name('branches.index')->middleware('can:branches.manage');
 
     Route::get('/audit', AuditIndex::class)->name('audit.index')->middleware('can:audit.view');
+
+    // مۆدیوڵی ٢: کڕیار و ئۆتۆمبێل
+    // show ـەکان ژمارە وەردەگرن (نەک model) تا تۆماری ئەرشیفکراویش ببینرێت
+    Route::get('/customers', CustomersIndex::class)->name('customers.index')->middleware('can:customers.view');
+    Route::get('/customers/create', CustomerForm::class)->name('customers.create')->middleware('can:customers.create');
+    Route::get('/customers/{customer}', CustomerShow::class)->name('customers.show')->whereNumber('customer')->middleware('can:customers.view');
+    Route::get('/customers/{customer}/edit', CustomerForm::class)->name('customers.edit')->middleware('can:customers.update');
+
+    Route::get('/vehicles', VehiclesIndex::class)->name('vehicles.index')->middleware('can:vehicles.view');
+    Route::get('/vehicles/create', VehicleForm::class)->name('vehicles.create')->middleware('can:vehicles.create');
+    Route::get('/vehicles/{vehicle}', VehicleShow::class)->name('vehicles.show')->whereNumber('vehicle')->middleware('can:vehicles.view');
+    Route::get('/vehicles/{vehicle}/edit', VehicleForm::class)->name('vehicles.edit')->middleware('can:vehicles.update');
 });
