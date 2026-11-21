@@ -87,7 +87,15 @@ class Show extends Component
             ->limit(20)
             ->get();
 
+        $upcoming = \App\Models\Appointment::with('vehicle')
+            ->where('customer_id', $customer->id)
+            ->active()
+            ->orderBy('scheduled_at')
+            ->get();
+
         return view('livewire.customers.show', [
+            'upcoming' => $upcoming,
+            'noShows' => \App\Models\Appointment::where('customer_id', $customer->id)->where('status', 'no_show')->count(),
             'customer' => $customer,
             'archivedVehicles' => $archivedVehicles,
             'stats' => $stats,

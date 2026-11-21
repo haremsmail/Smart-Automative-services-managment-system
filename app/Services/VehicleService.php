@@ -194,7 +194,18 @@ class VehicleService
                 'extra' => optional($w->start_date)->format('Y-m-d').' → '.optional($w->end_date)->format('Y-m-d'),
             ]);
 
-        return $workOrders->concat($inspections)->concat($warranties)->sortByDesc('date')->values();
+        $appointments = $vehicle->appointments()->with(['technician', 'bay'])->whereNotIn('status', ['cancelled'])->latest('scheduled_at')->get()
+            ->map(fn ($a) => [
+                'type' => 'appointment',
+                'date' => $a->scheduled_at,
+                'title' => "نۆرە {$a->reference}",
+                'status' => $a->statusLabel(),
+                'mileage' => null,
+                'details' => $a->requested_services,
+                'extra' => collect([$a->bay?->name, $a->technician?->name])->filter()->implode(' · ') ?: null,
+            ]);
+
+        return $workOrders->concat($inspections)->concat($warranties)->concat($appointments)->sortByDesc('date')->values();
     }
 
     private function guardMileage(Vehicle $vehicle, int $newMileage): void

@@ -88,7 +88,7 @@
             {{-- Sidebar Top: Brand & Logo --}}
             <div>
                 <div class="flex h-16 items-center justify-between border-b border-slate-200 px-5 dark:border-slate-800">
-                    <a href="{{ route('users.index') }}" class="flex items-center gap-3">
+                    <a href="{{ route('home') }}" class="flex items-center gap-3">
                         <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-700 to-indigo-600 font-black text-white shadow-md shadow-blue-500/20">
                             AM
                         </div>
@@ -186,6 +186,39 @@
                         </div>
                     @endcanany
 
+                    {{-- Module 3: Smart Booking & Scheduling --}}
+                    @canany(['appointments.view', 'services.manage', 'bays.manage', 'technicians.manage'])
+                        @php
+                            $m3 = [
+                                ['appointments.view', 'appointments.board', 'appointments.*', 'تابلۆی نۆرەکان', 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'],
+                                ['technicians.manage', 'technicians.index', 'technicians.*', 'وەستاکان و شەفت', 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'],
+                                ['bays.manage', 'bays.index', 'bays.*', 'شوێنەکانی کار', 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5'],
+                                ['services.manage', 'services.index', 'services.*', 'خزمەتگوزاری و نرخ', 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z'],
+                            ];
+                        @endphp
+                        <div>
+                            <div class="mb-2 px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                                M3 · نۆرە و ڕێکخستنی وۆرکشۆپ
+                            </div>
+                            <nav class="space-y-1">
+                                @foreach ($m3 as [$perm, $route, $pattern, $text, $icon])
+                                    @can($perm)
+                                        <a href="{{ route($route) }}"
+                                           class="flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium transition {{ request()->routeIs($pattern) ? 'bg-blue-50 text-blue-700 shadow-sm dark:bg-blue-900/40 dark:text-blue-300 font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800/80 dark:hover:text-white' }}">
+                                            <svg class="h-4 w-4 shrink-0 {{ request()->routeIs($pattern) ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icon }}"/>
+                                            </svg>
+                                            <span>{{ $text }}</span>
+                                        </a>
+                                    @endcan
+                                @endforeach
+                                <a href="{{ route('booking.create') }}" target="_blank" class="flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800/80">
+                                    <span class="w-4 text-center">🌐</span><span>نۆرەی ئۆنلاین (کڕیار)</span>
+                                </a>
+                            </nav>
+                        </div>
+                    @endcanany
+
                     {{-- Upcoming Modules Section --}}
                     <div>
                         <div class="mb-2 px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
@@ -193,14 +226,6 @@
                         </div>
                         <nav class="space-y-1">
 
-                            <div class="flex items-center justify-between rounded-xl px-3 py-2 text-slate-400 dark:text-slate-500 cursor-not-allowed">
-                                <span class="flex items-center gap-3">
-                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                    </svg>
-                                    <span>M3 · نۆرە و شوێنی کار</span>
-                                </span>
-                            </div>
 
                             <div class="flex items-center justify-between rounded-xl px-3 py-2 text-slate-400 dark:text-slate-500 cursor-not-allowed">
                                 <span class="flex items-center gap-3">

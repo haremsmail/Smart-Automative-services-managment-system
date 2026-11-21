@@ -5,6 +5,7 @@
         'work_order' => ['label' => 'کارنامە', 'dot' => 'bg-blue-500', 'badge' => 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800'],
         'inspection' => ['label' => 'پشکنین', 'dot' => 'bg-amber-500', 'badge' => 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800'],
         'warranty' => ['label' => 'گەرەنتی', 'dot' => 'bg-emerald-500', 'badge' => 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800'],
+        'appointment' => ['label' => 'نۆرە', 'dot' => 'bg-violet-500', 'badge' => 'bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-950/60 dark:text-violet-300 dark:border-violet-800'],
     ];
 @endphp
 
@@ -34,6 +35,9 @@
                         <button type="button" wire:click="restore" class="rounded-xl bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700">گەڕاندنەوە</button>
                     @endcan
                 @else
+                    @can('appointments.manage')
+                        <a href="{{ route('appointments.create', ['customer' => $vehicle->customer_id, 'vehicle' => $vehicle->id]) }}" class="rounded-xl bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700">📅 نۆرە</a>
+                    @endcan
                     @can('vehicles.update')
                         <a href="{{ route('vehicles.edit', $vehicle) }}" class="rounded-xl bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-700 hover:bg-blue-100 dark:bg-blue-900/40 dark:text-blue-300">دەستکاری</a>
                     @endcan

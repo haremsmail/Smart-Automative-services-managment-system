@@ -8,7 +8,22 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ServiceBay extends Model
 {
+    public const STATUSES = [
+        'available' => 'بەردەست',
+        'maintenance' => 'لە چاککردنەوەدا',
+    ];
+
     protected $fillable = ['branch_id', 'name', 'bay_type', 'status'];
+
+    public function isUsable(): bool
+    {
+        return $this->status !== 'maintenance';
+    }
+
+    public function typeLabel(): string
+    {
+        return config("scheduling.bay_types.{$this->bay_type}") ?? $this->bay_type;
+    }
 
     public function branch(): BelongsTo
     {

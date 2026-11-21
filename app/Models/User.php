@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -65,6 +66,59 @@ class User extends Authenticatable
     public function auditLogs(): HasMany
     {
         return $this->hasMany(AuditLog::class);
+    }
+
+    public function skills(): HasMany
+    {
+        return $this->hasMany(TechnicianSkill::class);
+    }
+
+    public function schedules(): HasMany
+    {
+        return $this->hasMany(TechnicianSchedule::class);
+    }
+
+    public function timeOff(): HasMany
+    {
+        return $this->hasMany(TechnicianTimeOff::class);
+    }
+
+    public function assignedAppointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class, 'technician_id');
+    }
+
+    /** وەستا چالاکەکان (ڕۆڵی technician) */
+    public function scopeTechnicians(Builder $query): Builder
+    {
+        return $query->where('status', 'active')
+            ->whereHas('role', fn ($q) => $q->where('name', 'technician'));
+    }
+
+    /**
+     * یەکەم پەڕە کە ئەم کارمەندە دەسەڵاتی هەیە، بۆ پاش چوونەژوورەوە.
+     * ڕیزبەندی بە پێی گرنگی کاری ڕۆژانەیە. null = هیچ دەسەڵاتێکی نییە.
+     */
+    public function homeRoute(): ?string
+    {
+        $pages = [
+            'appointments.view' => 'appointments.board',
+            'customers.view' => 'customers.index',
+            'vehicles.view' => 'vehicles.index',
+            'users.view' => 'users.index',
+            'technicians.manage' => 'technicians.index',
+            'roles.manage' => 'roles.index',
+            'branches.manage' => 'branches.index',
+            'audit.view' => 'audit.index',
+        ];
+
+        foreach ($pages as $permission => $route) {
+            if ($this->hasPermission($permission)) {
+                return $route;
+            }
+        }
+
+        return null;
     }
 
     public function isActive(): bool

@@ -31,11 +31,12 @@ class RolePermissionSeeder extends Seeder
                 'users.view',
                 'customers.view', 'customers.create', 'customers.update',
                 'vehicles.view', 'vehicles.create', 'vehicles.update', 'vehicles.transfer',
+                'appointments.view', 'appointments.manage',
             ]],
-            'technician' => ['display_name' => 'وەستا', 'permissions' => ['vehicles.view']],
+            'technician' => ['display_name' => 'وەستا', 'permissions' => ['vehicles.view', 'appointments.view']],
             'cashier' => ['display_name' => 'کاشێر', 'permissions' => [
                 'payments.create', 'pos.open_session',
-                'customers.view', 'vehicles.view',
+                'customers.view', 'vehicles.view', 'appointments.view',
             ]],
             'customer' => ['display_name' => 'کڕیار', 'permissions' => []],
         ];
