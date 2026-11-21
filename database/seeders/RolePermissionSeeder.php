@@ -27,9 +27,16 @@ class RolePermissionSeeder extends Seeder
 
         $roles = [
             'admin' => ['display_name' => 'بەڕێوەبەر', 'permissions' => $allNames],
-            'advisor' => ['display_name' => 'ڕاوێژکار', 'permissions' => ['users.view']],
-            'technician' => ['display_name' => 'وەستا', 'permissions' => []],
-            'cashier' => ['display_name' => 'کاشێر', 'permissions' => ['payments.create', 'pos.open_session']],
+            'advisor' => ['display_name' => 'ڕاوێژکار', 'permissions' => [
+                'users.view',
+                'customers.view', 'customers.create', 'customers.update',
+                'vehicles.view', 'vehicles.create', 'vehicles.update', 'vehicles.transfer',
+            ]],
+            'technician' => ['display_name' => 'وەستا', 'permissions' => ['vehicles.view']],
+            'cashier' => ['display_name' => 'کاشێر', 'permissions' => [
+                'payments.create', 'pos.open_session',
+                'customers.view', 'vehicles.view',
+            ]],
             'customer' => ['display_name' => 'کڕیار', 'permissions' => []],
         ];
 

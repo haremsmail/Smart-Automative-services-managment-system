@@ -22,6 +22,19 @@ return [
         'audit' => [
             'audit.view' => 'بینینی تۆماری گۆڕانکاری',
         ],
+        'customers' => [
+            'customers.view' => 'بینینی کڕیاران',
+            'customers.create' => 'زیادکردنی کڕیار',
+            'customers.update' => 'دەستکاریکردنی کڕیار',
+            'customers.delete' => 'ئەرشیفکردنی کڕیار',
+        ],
+        'vehicles' => [
+            'vehicles.view' => 'بینینی ئۆتۆمبێلەکان',
+            'vehicles.create' => 'زیادکردنی ئۆتۆمبێل',
+            'vehicles.update' => 'دەستکاریکردنی ئۆتۆمبێل',
+            'vehicles.transfer' => 'گواستنەوەی خاوەندارێتی ئۆتۆمبێل',
+            'vehicles.delete' => 'ئەرشیفکردنی ئۆتۆمبێل',
+        ],
         'payments' => [
             'payments.create' => 'زیادکردنی پارەدان',
         ],

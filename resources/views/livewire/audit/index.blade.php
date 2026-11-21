@@ -55,6 +55,13 @@
                         <option value="role.deleted">سڕینەوەی ڕۆڵ</option>
                         <option value="branch.created">دروستکردنی لق</option>
                         <option value="branch.updated">دەستکاریی لق</option>
+                        <option value="customer.created">زیادکردنی کڕیار</option>
+                        <option value="customer.updated">دەستکاریی کڕیار</option>
+                        <option value="customer.archived">ئەرشیفکردنی کڕیار</option>
+                        <option value="vehicle.created">زیادکردنی ئۆتۆمبێل</option>
+                        <option value="vehicle.updated">دەستکاریی ئۆتۆمبێل</option>
+                        <option value="vehicle.transferred">گواستنەوەی خاوەندارێتی</option>
+                        <option value="vehicle.archived">ئەرشیفکردنی ئۆتۆمبێل</option>
                         <option value="login.success">چوونەژوورەوەی سەرکەوتوو</option>
                         <option value="login.failed">شکستی چوونەژوورەوە</option>
                     </datalist>

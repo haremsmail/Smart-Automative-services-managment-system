@@ -2,20 +2,39 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
 {
+    use HasFactory, SoftDeletes;
+
+    public const TYPES = [
+        'retail' => 'تاکەکەس',
+        'wholesale' => 'کۆمپانیا / فلیت',
+    ];
+
     protected $fillable = [
         'user_id', 'customer_type', 'full_name', 'phone',
-        'whatsapp', 'email', 'address', 'tax_number', 'credit_limit', 'notes'
+        'whatsapp', 'email', 'address', 'tax_number', 'credit_limit', 'notes',
     ];
 
     protected function casts(): array
     {
         return ['credit_limit' => 'decimal:2'];
+    }
+
+    public function typeLabel(): string
+    {
+        return self::TYPES[$this->customer_type] ?? $this->customer_type;
+    }
+
+    public function isCompany(): bool
+    {
+        return $this->customer_type === 'wholesale';
     }
 
     public function user(): BelongsTo
